@@ -3,7 +3,6 @@ module class_aimp
   use, intrinsic :: ISO_C_BINDING, only: C_INT, C_LONG, C_LONG_LONG, &
                                          C_FLOAT, C_DOUBLE, C_LOC
   implicit none
-  ! interfaces
   public :: init_aimp, print_aimp, read_aimp
 
   integer, parameter :: maxnumM1=16, maxnumM2=1 

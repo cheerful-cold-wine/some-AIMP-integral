@@ -148,4 +148,3 @@ subroutine aimp_M1int(nftmax,MxAng,ndimlx,ndimrx,               &
   !gprim(1:nc1)=2.d0*gprim(1:nc1)
   return
 end subroutine aimp_M1int
-
