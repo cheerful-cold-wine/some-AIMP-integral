@@ -6,7 +6,7 @@ module class_aimp
   ! interfaces
   public :: init_aimp, print_aimp, read_aimp
 
-  integer, parameter :: maxnumM1=16, maxnumM2=1!                                  
+  integer, parameter :: maxnumM1=16, maxnumM2=1 
   integer, parameter :: maxL=3        ! max L of orbital in PROJ                  
   integer, parameter :: maxprim=22    ! max number of primitive GTO in one shell 
   integer, parameter :: maxcgto=5     ! max number of contracted GTO in one shell
