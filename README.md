@@ -1,5 +1,5 @@
 # some-AIMP-integral
-ab initio model potential (AIMP)
+Ab Initio Model Potential (AIMP)
 
 some integrals used in AIMP
 
