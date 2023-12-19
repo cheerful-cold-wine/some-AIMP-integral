@@ -1,0 +1,287 @@
+\documentclass{article}
+\usepackage{geometry}
+\geometry{a4paper,scale=0.8}
+\usepackage[fleqn]{amsmath}
+\usepackage{braket}
+\usepackage{esint}
+
+\title{AIMP integral}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+\noindent
+coulomb potential: $M_1$, $M_2$\\
+projection operator\\
+exchange potential: spectral representation operator
+
+\newpage
+\section{$M_1$ coulomb potential}
+	$M_1$ coulomb potential: s-type GTO times nuclear attraction
+	\begin{displaymath}
+		\hat{O}_{M_1}=\sum_{\zeta}^{nucleus} \hat{O}^{\zeta}_{M_1}
+		=\sum_{\zeta}^{nuc} \frac{1}{\vert \vec{r}-\vec{R}_\zeta \vert}
+		\sum_{I\in\zeta} A_I e^{-\alpha_I \vert \vec{r}-\vec{R}_\zeta \vert^2} 
+	\end{displaymath}
+	\begin{displaymath}
+		\bra{\chi_a} \frac{1}{r_{M_1}} \sum_I A_Ie^{-\alpha_I r^2_{M_1}} \ket{\chi_b}
+		=\sum_I A_I \iiint^{+\infty}_{-\infty} x^{l_i}_A y^{m_i}_A z^{n_i}_A e^{-\alpha_i r^2_A} 
+		\left[\frac{e^{-\alpha_I r_{M_1}^2}}{r_{M_1}}\right] x_B^{l_j} y_B^{m_j} z_B^{n_j} 
+		e^{-\alpha_j r_B^2} d^3r 
+	\end{displaymath}
+	\begin{displaymath}
+		\iiint_{-\infty}^{+\infty} x^{l_1}_A y^{m_1}_A z^{n_1}_A e^{-\alpha_1 r^2_A} 
+		\left[\frac{e^{-\alpha_3 r_{M_1}^2}}{r_{M_1}}\right] x_B^{l_2} y_B^{m_2} z_B^{n_2} 
+		e^{-\alpha_2 r_B^2} d^3r
+	\end{displaymath}
+	\begin{center}
+		laplace transform: $\frac{1}{r}=\frac{2}{\sqrt{\pi}}\int_0^{\infty}du e^{-u^2r^2}$\\
+		1st GPT:$\vec{C}=\frac{\alpha_1 \vec{A}+\alpha_2 \vec{B}}{\alpha_12}$, $\alpha_{12}=\alpha_1+\alpha_2$
+	\end{center}
+	\begin{displaymath}
+		=e^{\frac{\alpha_1\alpha_2}{\alpha_{12}} \vert \overrightarrow{AB} \vert^2}
+		\frac{2}{\sqrt{\pi}}\int_0^{\infty}du \iiint^{+\infty}_{-\infty}d^3r
+		x^{l_1}_A y^{m_1}_A z^{n_1}_A x_B^{l_2} y_B^{m_2} z_B^{n_2}
+		e^{-\alpha_{12}r_C^2}e^{-(u^2+\alpha_3)r_{M_1}^2}
+	\end{displaymath}
+	\begin{center}
+		2nd GPT: $\vec{D}=\frac{\alpha_{12}\vec{C}+(u^2+\alpha_3)\vec{M_1}}{\alpha_{123}+u^2}$
+	\end{center}
+	\begin{displaymath}
+		=e^{\frac{\alpha_1\alpha_2}{\alpha_{12}} \vert \overrightarrow{AB} \vert^2}
+		\frac{2}{\sqrt{\pi}}\int_0^{\infty}du \iiint^{+\infty}_{-\infty}d^3r
+		x^{l_1}_A y^{m_1}_A z^{n_1}_A x_B^{l_2} y_B^{m_2} z_B^{n_2}
+		e^{-\frac{\alpha_{12}(u^2+\alpha_3)}{\alpha_{123}+u^2} \vert \overrightarrow{M_1C} \vert^2}
+		e^{(\alpha_{123}+u^2)r_D^2}
+	\end{displaymath}
+	\begin{center}
+		$t^2=\frac{u^2}{\alpha_{123}+u^2}$, $du=\frac{\sqrt{\alpha_{123}}}{(1-t^2)^{3/2}}dt$
+	\end{center}
+	\begin{displaymath}
+		=e^{\frac{\alpha_1\alpha_2}{\alpha_{12}} \vert \overrightarrow{AB} \vert^2} 
+		e^{-\frac{\alpha_{12}\alpha_3}{\alpha_{123}} \vert \overrightarrow{M_1C} \vert^2}
+		\frac{2\sqrt{\alpha_{123}}}{\sqrt{\pi}} \int_0^1 \frac{dt}{(1-t^2)^{3/2}}
+		\iiint d^3r x^{l_1}_A y^{m_1}_A z^{n_1}_A x_B^{l_2} y_B^{m_2} z_B^{n_2}
+		e^{-\frac{\alpha_{123}}{1-t^2}r_D^2}
+		e^{-\frac{\alpha_{12}^2}{\alpha_{123}}\vert \overrightarrow{M_1C} \vert^2t^2}
+	\end{displaymath}
+	\begin{center}
+		$$
+			I_x(l_1,l_2,t)=\frac{1}{\sqrt{1-t^2}}
+			\int^{+\infty}_{-\infty}dxx^{l_1}_Ax_B^{l_2}e^{-\frac{\alpha_{123}}{1-t^2}x_D^2}
+		$$
+		$	X=\frac{\alpha_{12}^2}{\alpha_{123}} \vert \overrightarrow{M_1C} \vert^2	$,
+		$	E_{AB}=e^{\frac{\alpha_1\alpha_2}{\alpha_{12}} \vert \overrightarrow{AB} \vert^2} 	$,
+		$	E_{M_1C}=e^{-\frac{\alpha_{12}\alpha_3}{\alpha_{123}} \vert \overrightarrow{M_1C} \vert^2}	$
+	\end{center}
+	\begin{displaymath}
+		=E_{AB}E_{M_1C} \frac{2\sqrt{\alpha_{123}}}{\sqrt{\pi}}
+		\int_0^1 I_x(l_1,l_2,t) I_y(m_1,m_2,t) I_z(n_1,n_2,t) e^{-Xt^2} dt
+	\end{displaymath}
+	\begin{displaymath}
+		=E_{AB}E_{M_1C} \frac{2\sqrt{\alpha_{123}}}{\sqrt{\pi}}
+		\sum_{p=1}^{N_p} \omega_p I_x(t_p) I_y(t_p) I_z(t_p)
+	\end{displaymath}
+	HRR:\\
+		$	I_x(l_1,l_2,t)=I_x(l_1+1,l_2-1,t)+(A_x-B_x)I_x(l_1,l_2-1,t)	$\\
+	VRR:\\
+		$	I_x(l_1,0,t)=(D_x-A_x)I_x(l_1-1,0,t)+\frac{(l_1-1)(1-t^2)}{2\alpha_{123}}I_x(l_2,0,t)	$\\
+		$	D_x-A_x=t^2({M_1}_x-C_x)+(C_x-A_x)	$\\
+		$	I_x(1,0,t)=(D_x-A_x)I_x(0,0,t)	$\\
+		$	I_x(0,0,t)=\sqrt{\frac{\pi}{\alpha_{123}}}	$\\
+		
+\newpage
+\section{$M_2$ coulomb potential}
+	$M_2$ coulomb  potential: s-type GTO
+	\begin{displaymath}
+		\hat{O}_{M_2}=\sum_{\zeta}^{nucleus} \hat{O}^{\zeta}_{M_2}
+		=\sum_{\zeta}^{nuc} \sum_{J\in\zeta} A_J e^{-\alpha_J \vert \vec{r}-\vec{R}_\zeta \vert^2} 
+	\end{displaymath}
+	\begin{displaymath}
+		\bra{\chi_a} \sum_J A_J e^{-\alpha_J r_{M_2}^2} \ket{\chi_b}
+		=\sum_J A_J \iiint_{-\infty}^{+\infty} x^{l_i}_A y^{m_i}_A z^{n_i}_A e^{-\alpha_i r^2_A}
+		\left[e^{-\alpha_I r_{M_2}^2}\right] x_B^{l_j} y_B^{m_j} z_B^{n_j} e^{-\alpha_j r_B^2} d^3r 
+	\end{displaymath}
+	\begin{displaymath}
+		\iiint x^{l_1}_A y^{m_1}_A z^{n_1}_A e^{-\alpha_1 r^2_A} 
+		e^{-\alpha_3 r_{M_2}^2} x_B^{l_2} y_B^{m_2} z_B^{n_2} e^{-\alpha_2 r_B^2} d^3r
+	\end{displaymath}
+	\begin{center}
+		1st GPT: $	\vec{C}=\frac{\alpha_1\vec{A}+\alpha_2\vec{B}}{\alpha_{12}}	$
+	\end{center}
+	\begin{displaymath}
+		=e^{-\frac{\alpha_1\alpha_2}{\alpha_{12}} \vert \overrightarrow{AB} \vert^2}
+		\iiint x^{l_1}_A y^{m_1}_A z^{n_1}_A x_B^{l_2} y_B^{m_2} z_B^{n_2} 
+		e^{-\alpha_{12} r_C^2} e^{-\alpha_3 r_{M_2}^2} d^3r
+	\end{displaymath}
+	\begin{center}
+		2nd GPT: $	\vec{D}=\frac{\alpha_{12}\vec{C}+\alpha_3 \vec{M}_2}{\alpha_{123}}	$
+	\end{center}
+	\begin{displaymath}
+		=e^{-\frac{\alpha_1\alpha_2}{\alpha_{12}} \vert \overrightarrow{AB} \vert^2}
+		e^{\frac{\alpha_{12}\alpha_3}{\alpha_{123}} \vert \overrightarrow{CM_2} \vert^2}
+		\iiint x^{l_1}_A y^{m_1}_A z^{n_1}_A x_B^{l_2} y_B^{m_2} z_B^{n_2} e^{-\alpha_{123}r_D^2} d^3r
+	\end{displaymath}
+	\begin{center}
+		$	I_x(l_1,l_2)=\int^{+\infty}_{-\infty} x_A^{l_1} x_B^{l_2} e^{-\alpha_{123}x_D^2} dx		$\\
+		$	E_{AB}=e^{-\frac{\alpha_1\alpha_2}{\alpha_{12}} \vert \overrightarrow{AB} \vert^2}	$,
+		$	E_{CM_2}=e^{\frac{\alpha_{12}\alpha_3}{\alpha_{123}} \vert \overrightarrow{CM_2} \vert^2}	$
+	\end{center}
+	\begin{displaymath}
+		=E_{AB}E_{CM_2} I_x(l_1,l_2) I_y(m_1,m_2) I_z(n_1,n_2)
+	\end{displaymath}
+	HRR:\\
+		$	I_x(l_1,l_2)=I_x(l_1+1,l_2-1)+(A_x-B_x)I_x(l_1,l_2-1)	$\\
+	VRR:\\
+		$	I_x(l_1,0)=(D_x-A_x)I_x(l_1-1,0)+\frac{l_1-1}{2\alpha_{123}}I_x(l_1-2,0)	$\\
+		$	I_x(1,0)=(D_x-A_x)I_x(0,0)	$\\
+		$	I_x(0,0)=\sqrt{\frac{\pi}{\alpha_{123}}}	$
+		
+\newpage
+\section{projection operator}
+	\begin{displaymath}
+		\hat{P}=\sum_K B_K \ket{\psi_K} \bra{\psi_K}
+		=\sum_{\zeta}^{nuc} \sum_N \sum_{L=0}^{N-1} \sum_{l+m+n=L} 
+		B^{\zeta NL}_{lmn} \ket{\psi^{\zeta NL}_{lmn}} \bra{\psi^{\zeta NL}_{lmn}}
+	\end{displaymath}
+	\begin{displaymath}
+		=\sum_{\zeta}^{nuc} \sum_N \sum_{L=0}^{N-1} \sum_{l+m+n=L} B^{\zeta NL}_{lmn}
+		\sum_{pq} (C^{\zeta NL}_{lmn})_p (C^{\zeta NL}_{lmn})^*_q \ket{\phi_p^{\zeta}} \bra{\phi_q^{\zeta}}
+	\end{displaymath}
+	atom orbital: $\{\chi_a\}$
+	\begin{displaymath}
+		\braket{\chi_a|\phi_p}=\iiint x^{l_1}_A y^{m_1}_A z^{n_1}_A e^{-\alpha_1r_A^2}
+		x_B^{l_2} y_B^{m_2} z_B^{n_2} e^{-\alpha_2r_B^2} d^3r
+	\end{displaymath}
+	\begin{center}
+		GPT: $\vec{C}=\frac{\alpha_1\vec{A}+\alpha_2\vec{B}}{\alpha_{12}}$
+	\end{center}
+	\begin{displaymath}
+		=e^{-\frac{\alpha_1\alpha_2}{\alpha_{12}} \vert \overrightarrow{AB} \vert^2}
+		\iiint x^{l_1}_A y^{m_1}_A z^{n_1}_A x_B^{l_2} y_B^{m_2} z_B^{n_2} e^{-\alpha_{12}r_C^2} d^3r
+	\end{displaymath}
+	\begin{displaymath}
+		=E_AB I_x(l_1,l_2) I_y(m_1,m_2) I_z(n_1,n_2)
+	\end{displaymath}
+	HRR and VRR:\\
+		$	I_x(l_1,l_2)=I_x(l_1+1,l_2-1)+(A_x-B_x)I_x(l_1,l_2-1)	$\\
+		$	I_x(l_1,0)=(C_x-A_x)I_x(l_1-1,0)+\frac{l_1-1}{2\alpha_{12}}I_x(l_1-2,0)	$\\
+		$	I_x(1,0)=(C_x-A_x)I_x(0,0)	$\\
+		$	I_x(0,0)=\sqrt{\frac{\pi}{\alpha_{12}}}	$
+		
+\newpage 
+\section{exchange potential}
+	spectral representation operator:\\
+	\begin{displaymath}
+		\hat{I}^{SRO}=\sum_{ij} \ket{i} (S^{-1})_{ij} \bra{j} \qquad S_{ij}=\braket{i|j}
+	\end{displaymath}
+	\begin{displaymath}
+		\hat{O}^{SRO}=\hat{I}^{SRO} \hat{O} \hat{I}^{SRO} 
+		=\sum_{ijkl} \ket{i} (S^{-1})_{ij} \braket{j|\hat{O}|k} (S^{-1})_{kl} \bra{l}
+		=\sum_{il} \ket{i} (O^{SRO})_{il} \bra{l}
+	\end{displaymath}
+	\begin{displaymath}
+		(O^{SRO})_{il}=\sum_{jk} (S^{-1})_{ij} \braket{j|\hat{O}|k} (S^{-1})_{kl}
+	\end{displaymath}
+	exchange operator:\\
+	\begin{displaymath}
+		\hat{O}_{exch}=\sum_{\zeta}^{nuc} \hat{O}^{\zeta}_{exch}
+	\end{displaymath}
+	\begin{displaymath}
+		\hat{O}^{\zeta}_{exch}=\sum_{c\in\zeta} \braket{\cdot\psi_c^{\zeta}|\psi_c^{\zeta}\cdot}
+		=\sum_{c\in\zeta} \sum_N \sum_{L=0}^{N-1} \sum_{l+m+n=L} 
+		\braket{\cdot\psi_{lmn}^{\zeta NL}|\psi_{lmn}^{\zeta NL}\cdot}
+	\end{displaymath}
+	\begin{displaymath}
+		\begin{aligned}
+			\hat{O}^{SRO}_{exch} &=\sum_{\zeta}^{nuc}  \hat{O}^{SRO,\zeta}_{exch}
+			=\sum_{\zeta}^{nuc} \sum_{il} \ket {\phi_i^{\zeta}} (O^{SRO,\zeta}_{exch})_{il} \bra{\phi^{\zeta}_l}\\
+			&=\sum_{\zeta}^{nuc} \sum_{il} \ket{\phi_i^{\zeta}} \left[\sum_{jk}
+			(S^{-1})_{ij} \braket{\phi^{\zeta}_j|\hat{O}^{\zeta}_{exch}|\phi^{\zeta}_k} (S^{-1})_{kl} \right]
+			\bra{\phi^{\zeta}_l}\\
+			&=\sum_{\zeta}^{nuc} \sum_{il} \ket{\phi_i^{\zeta}} \left[\sum_{jk} (S^{-1})_{ij}
+			\left[ \sum_{c\in\zeta}\braket{\phi^{\zeta}_j \psi_c^{\zeta}|\psi_c^{\zeta} \phi^{\zeta}_k} \right]
+			(S^{-1})_{kl}  \right] \bra{\phi^{\zeta}_l}\\
+			&=\sum_{\zeta}^{nuc} \sum_{il} \ket{\phi_i^{\zeta}} \left[\sum_{jk} (S^{-1})_{ij}
+			\left[ \sum_{c\in\zeta} \sum_N \sum_{L=0}^{N-1} \sum_{l+m+n=L}
+			\braket{\phi^{\zeta}_j \psi_{lmn}^{\zeta NL}|\psi^{\zeta NL}_{lmn} \phi_k^{\zeta}} \right]
+			(S^{-1})_{kl}  \right] \bra{\phi^{\zeta}_l}\\
+			&=\sum_{\zeta}^{nuc} \sum_{il} \ket{\phi_i^{\zeta}} \left[\sum_{jk} (S^{-1})_{ij}
+			\left[ \sum_{c\in\zeta} \sum_N \sum_{L=0}^{N-1} \sum_{l+m+n=L} \sum_{pq}
+			(C^{\zeta NL}_{lmn})_p (C^{\zeta NL}_{lmn})^*_q
+			\braket{\phi^{\zeta}_j \phi_{p}^{\zeta}|\phi_q^{\zeta} \phi^{\zeta}_{k}} 
+			\right] (S^{-1})_{kl}  \right] \bra{\phi^{\zeta}_l}\\
+			&=\sum_{\zeta}^{nuc} \sum_{il} \sum_{jk} \sum_{c\in\zeta} \sum_N \sum_{L=0}^{N-1} \sum_{l+m+n=L} \sum_{pq}
+			\ket{\phi_i^{\zeta}} (S^{-1})_{ij} (C^{\zeta NL}_{lmn})_p (C^{\zeta NL}_{lmn})^*_q 
+			\braket{\phi^{\zeta}_j \phi_{p}^{\zeta}|\phi_q^{\zeta} \phi^{\zeta}_{k}} (S^{-1})_{kl} \bra{\phi^{\zeta}_l}\\
+		\end{aligned}
+	\end{displaymath}
+	\begin{displaymath}
+		\begin{aligned}
+			\braket{\phi_j\phi_p|\phi_q\phi_k}&=\iint d^3r_1 d^3r_2 \frac{1}{r_{12}}
+			{x_1}^{l_1+l_2}_A {x_2}^{l_3+l_4}_A {y_1}_A^{m_1+m_2} {y_2}_A^{m_3+m_4} {z_1}_A^{n_1+n_2} 
+			{z_2}_A^{n_3+n_4} e^{-\alpha_{12} {r_1}_A^2} e^{-\alpha_{34} {r_2}^2_A}\\
+			&=\frac{2}{\sqrt{\pi}} \int_0^{\infty} e^{-u^2 \vert \vec{r}_1 - \vec{r}_2 \vert^2} du
+			\iint d^3r_1 d^3r_2 {x_1}^{l_1+l_2}_A {x_2}^{l_3+l_4}_A {y_1}_A^{m_1+m_2} {y_2}_A^{m_3+m_4} {z_1}_A^{n_1+n_2} 
+			{z_2}_A^{n_3+n_4} e^{-\alpha_{12} {r_1}_A^2} e^{-\alpha_{34} {r_2}^2_A} \\
+			&=\frac{2}{\sqrt{\pi}} \int_0^{\infty} \tilde{I}_x(l_1+l_2,0,l_3+l_4,0;u)
+			\tilde{I}_y(m_1+m_2,0,m_3+m_4,0;u) \tilde{I}_z(n_1+n_2,0,n_3+n_4,0;u) du \\
+		\end{aligned}
+	\end{displaymath}
+	\begin{displaymath}
+		\tilde{I}_x(l_1+l_2,0,l_3+l_4,0;u)=\iint dx_1 dx_2 {x_1}^{l_1+l_2}_A {x_2}^{l_3+l_4}_A 
+		e^{-\alpha_{12} {x_1}_A^2} e^{-\alpha_{34} {x_2}^2_A} e^{-u^2(x_1-x_2)^2}
+	\end{displaymath}
+	\begin{displaymath}
+		\begin{aligned}
+			\tilde{I}_x(0,0,0,0;u)&=\iint dx_1 dx_2 e^{-\alpha_{12} {x_1}_A^2} 
+			e^{-\alpha_{34} {x_2}^2_A} e^{-u^2(x_1-x_2)^2}\\
+			&=\int_{-\infty}^{+\infty} e^{-\alpha_{34}(x_2-A_x)^2} 
+			e^{-\frac{\alpha_{12}u^2}{\alpha_{12}+u^2}(x_2-A_x)^2} dx_2
+			\int_{-\infty}^{+\infty} e^{-(\alpha_{12}+u^2)(x_1-\frac{\alpha_{12}A_x+u^2 x_2}{\alpha_{12}+u^2})^2} dx_1 \\
+			&=\sqrt{\frac{\pi}{\alpha_{12}+u^2}} 
+			\int_{-\infty}^{+\infty} e^{-(\alpha_{34}+\frac{\alpha_{12}u^2}{\alpha_{12}+u^2})(x_2-A_x)^2} dx_2 \\
+			&=\frac{\pi}{\sqrt{\alpha_{12}\alpha_{34}+\alpha_{1234}u^2}}\\
+		\end{aligned}
+	\end{displaymath}
+	\begin{center}
+		$	\rho=\frac{\alpha_{12}\alpha_{34}}{\alpha_{1234}}	$, 
+		$	t^2=\frac{u^2}{u^2+\rho}	$,
+		$	u^2=\frac{\rho t^2}{1-t^2}	$,
+		$	du=\frac{\sqrt{\rho}}{(1-t^2)^{3/2}} dt	$
+	\end{center}
+	\begin{displaymath}
+		\tilde{I}_x(0,0,0,0;t)=\frac{\pi}{\sqrt{\alpha_{12}\alpha_{34}+\alpha_{1234}u^2}}
+		=\frac{\pi \sqrt{1-t^2}}{\sqrt{\alpha_{12} \alpha_{34}}}
+	\end{displaymath}
+	\begin{displaymath}
+		\tilde{I}_x(l_1+l_2,0,l_3+l_4,0;t)=\iint {x_1}^{l_1+l_2}_A {x_2}^{l_3+l_4}_A 
+		e^{-\alpha_{12} {x_1}_A^2} e^{-\alpha_{34} {x_2}^2_A} e^{-\frac{\rho t^2}{1-t^2} (x_1-x_2)^2} dx_1 dx_2
+	\end{displaymath}
+	\begin{displaymath}
+		\begin{aligned}
+			I_x(l_1+l_2,0,l_3+l_4,0;t)&=\frac{\tilde{I}_x(l_1+l_2,0,l_3+l_4,0;t)}{\tilde{I}_x(0,0,0,0;t)}\\
+			&=\frac{\iint {x_1}^{l_1+l_2}_A {x_2}^{l_3+l_4}_A e^{-\alpha_{12} {x_1}_A^2} 
+			e^{-\alpha_{34} {x_2}^2_A} e^{-\frac{\rho t^2}{1-t^2} (x_1-x_2)^2} dx_1 dx_2 }
+			{e^{-Xt^2} \frac{\pi \sqrt{1-t^2}}{\sqrt{\alpha_{12} \alpha_{34}}}}
+		\end{aligned}
+	\end{displaymath}
+	\begin{center}
+		$ X=0 $, $ e^{-Xt^2}=1 $
+	\end{center}
+	\begin{displaymath}
+		\begin{aligned}
+			\braket{\phi_j\phi_p|\phi_q\phi_k}&=\frac{2}{\sqrt{\pi}} \int_0^{\infty} \tilde{I}_x(l_1+l_2,0,l_3+l_4,0;u)
+			\tilde{I}_y(m_1+m_2,0,m_3+m_4,0;u) \tilde{I}_z(n_1+n_2,0,n_3+n_4,0;u) du\\
+			&=\frac{2\pi^{5/2}}{\alpha_{12}\alpha_{34}\sqrt{\alpha_{1234}}}
+			\int_0^1 e^{-Xt^2} I_x(l_1+l_2,0,l_3+l_4,0;t) I_y(m_1+m_2,0,m_3+m_4,0;t) I_z(n_1+n_2,0,n_3+n_4,0;t) dt\\
+			&=\frac{2\pi^{5/2}}{\alpha_{12}\alpha_{34}\sqrt{\alpha_{1234}}}
+			\sum_{p=1}^{N_p} \omega_p I_x(t_p) I_y(t_p) I_z(t_p)\\
+		\end{aligned}
+	\end{displaymath}
+	only need VRR here:\\
+		$ I_x(l_1+1,0,l_2,0;t)=\frac{l_1}{2\alpha_{12}}(1-\frac{\alpha_{34} t^2}{\alpha_{1234}}) I_x(l_1-1,0,l_2,0;t)
+		+\frac{l_2 t^2}{2\alpha_{1234}} I_x(l_1,0,l_2-1,0;t) $\\
+		$ I_x(l_1,0,l_2+1,0;t)=\frac{l_2}{2\alpha_{34}}(1-\frac{\alpha_{12} t^2}{\alpha_{1234}}) I_x(l_1,0,l_2-1,0;t)
+		+\frac{l_1 t^2}{2\alpha_{1234}} I_x(l_1-1,0,l_2,0;t) $
+\end{document}
